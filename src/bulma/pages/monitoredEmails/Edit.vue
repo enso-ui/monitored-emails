@@ -1,7 +1,7 @@
 <template>
     <div class="columns is-centered">
         <div class="column is-three-quarters-desktop is-full-touch">
-            <enso-form class="box form-box has-background-light raises-on-hover">
+            <enso-form class="box form-box">
                 <template #actions-left>
                     <div class="level-item">
                         <a class="button is-primary"
@@ -26,10 +26,7 @@ import { inject } from 'vue';
 import { useRoute } from 'vue-router';
 import { EnsoForm } from '@enso-ui/forms/bulma';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCheckDouble } from '@fortawesome/free-solid-svg-icons';
-
-library.add(faCheckDouble);
 
 const http = inject('http');
 const i18n = inject('i18n');
@@ -38,19 +35,15 @@ const route = inject('route');
 const toastr = inject('toastr');
 
 const currentRoute = useRoute();
-
-console.log(currentRoute.params.monitoredEmail);
 const testRoute = route('administration.monitoredEmails.testEmail', { monitoredEmail: currentRoute.params.monitoredEmail });
 
 const testMail = () => http.get(testRoute)
     .then(({ data }) => {
-        if(data.status)
+        if (data.status) {
             toastr.success(data.message);
-        else toastr.error(data.message);
+        } else {
+            toastr.error(data.message);
+        }
     })
     .catch(errorHandler);
-
 </script>
-
-<style lang="scss">
-</style>
