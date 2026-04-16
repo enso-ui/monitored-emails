@@ -3,18 +3,13 @@
         <div class="column is-three-quarters-desktop is-full-touch">
             <enso-form class="box form-box">
                 <template #actions-left>
-                    <div class="level-item">
-                        <a class="button is-primary"
-                            @click="testMail">
-                            <span class="is-hidden-mobile">
-                                {{ i18n('Test') }}
-                            </span>
-                            <span class="icon">
-                                <fa icon="check-double"/>
-                            </span>
-                            <span class="is-hidden-mobile"/>
-                        </a>
-                    </div>
+                     <action tag="a"
+                        :button="{
+                            class: 'is-dark',
+                            icon: faCheckDouble,
+                            label: 'Test',
+                        }"
+                        @click="testMail"/>
                 </template>
             </enso-form>
         </div>
@@ -24,12 +19,10 @@
 <script setup>
 import { inject } from 'vue';
 import { useRoute } from 'vue-router';
-import { EnsoForm } from '@enso-ui/forms/bulma';
-import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
+import { EnsoForm, Action } from '@enso-ui/forms/bulma';
 import { faCheckDouble } from '@fortawesome/free-solid-svg-icons';
 
 const http = inject('http');
-const i18n = inject('i18n');
 const errorHandler = inject('errorHandler');
 const route = inject('route');
 const toastr = inject('toastr');
