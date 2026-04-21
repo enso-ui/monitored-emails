@@ -1,7 +1,7 @@
 {
   "name": "@enso-ui/monitored-emails",
   "version": "1.3.5",
-  "description": "Frontend package for monitoring emails",
+  "description": "Monitored email administration pages for Enso UI",
   "main": "src/bulma/pages/monitoredEmails/Index.vue",
   "repository": {
     "type": "git",
